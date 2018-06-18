@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
@@ -33,13 +33,18 @@ public class Adulte extends Personne {
 	public void setTravail(Travail travail) {
 		this.travail = travail;
 	}
+	
+	
+
+
 
 	
-	//toString
-	@Override
-	public String toString() {
-		return "Adulte toString()=" + super.toString() + "[travail=" + travail + "]";
-	}
+//	//toString
+//	@Override
+//	public String toString() {
+//		return "Adulte [travail=" + travail + "]";
+//	}
+
 	
 
 }

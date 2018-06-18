@@ -6,18 +6,18 @@ import java.util.ArrayList;
 
 import org.jfx.dao.DaoImpl;
 import org.jfx.model.Personne;
-import org.jfx.modelfx.PersonneFx;
-
-import javafx.collections.ObservableList;
 
 public class ServiceImpl implements IService {
 
 	private IDao dao = new DaoImpl();
 
 	@Override
-	public void addPersonne(Personne personne) {
-		dao.addPersonne(personne);
-
+	public boolean addPersonne(Personne personne) {
+		boolean reponse = dao.addPersonne(personne);
+		if (reponse == false) {
+			return false;
+		} else
+			return true;
 	}
 
 	@Override
@@ -29,6 +29,25 @@ public class ServiceImpl implements IService {
 	@Override
 	public Personne select(Long personneId) {
 		return dao.select(personneId);
+	}
+
+	@Override
+	public boolean delete(Long personneId) {
+		boolean reponse = dao.delete(personneId);
+		if (reponse == false) {
+			return false;
+		} else
+			return true;
+
+	}
+
+	@Override
+	public boolean update(Personne personne) {
+		boolean reponse = dao.update(personne);
+		if (reponse == false) {
+			return false;
+		} else
+			return true;
 	}
 
 }

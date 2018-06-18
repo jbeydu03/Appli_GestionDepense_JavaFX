@@ -12,12 +12,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+
 
 
 
@@ -101,14 +97,15 @@ public class Personne {
 	public void setMail(Mail mail) {
 		this.mail = mail;
 	}
-
+	
+	//ToString
 	@Override
 	public String toString() {
 		return "Personne [id=" + id + ", dateDeNaissance=" + dateDeNaissance + ", nom=" + nom + ", prenom=" + prenom
 				+ ", adresse=" + adresse + ", mail=" + mail + "]";
 	}
 	
-	//ToString
+
 	
 	
 

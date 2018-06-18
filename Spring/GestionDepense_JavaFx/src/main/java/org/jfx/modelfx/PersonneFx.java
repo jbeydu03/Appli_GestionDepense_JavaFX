@@ -2,28 +2,23 @@ package org.jfx.modelfx;
 
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import org.jfx.model.Adresse;
 import org.jfx.model.Mail;
 
+import javafx.beans.property.LongProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-
-
-
 public class PersonneFx {
-	
+
 	private ObjectProperty<LocalDate> dateDeNaissance = new SimpleObjectProperty<>();
+	private LongProperty id = new SimpleLongProperty();
 	private StringProperty nom = new SimpleStringProperty();
 	private StringProperty prenom = new SimpleStringProperty();
-	private ObjectProperty<Mail> mail= new SimpleObjectProperty<>();
+	private ObjectProperty<Mail> mail = new SimpleObjectProperty<>();
 	private ObjectProperty<Adresse> adresse = new SimpleObjectProperty<>();
 	// private ObjectProperty<Sexe> sexe = new SimpleObjectProperty<>();
 
@@ -31,7 +26,7 @@ public class PersonneFx {
 		this.nom.set("");
 		this.prenom.set("");
 		this.dateDeNaissance.set(LocalDate.of(0, 1, 1));
-	
+
 	}
 
 	public PersonneFx(String n, String p, LocalDate ddn, Mail mail, Adresse adresse) {
@@ -40,6 +35,14 @@ public class PersonneFx {
 		this.dateDeNaissance.set(ddn);
 		this.mail.set(mail);
 		this.adresse.set(adresse);
+	}
+
+	public LongProperty getId() {
+		return id;
+	}
+
+	public void setId(LongProperty id) {
+		this.id = id;
 	}
 
 	public ObjectProperty<LocalDate> getDateDeNaissance() {
@@ -65,7 +68,6 @@ public class PersonneFx {
 	public void setPrenom(StringProperty prenom) {
 		this.prenom = prenom;
 	}
-	
 
 	public ObjectProperty<Mail> getMail() {
 		return mail;
@@ -74,8 +76,6 @@ public class PersonneFx {
 	public void setMail(ObjectProperty<Mail> mail) {
 		this.mail = mail;
 	}
-	
-	
 
 	public ObjectProperty<Adresse> getAdresse() {
 		return adresse;
@@ -91,8 +91,6 @@ public class PersonneFx {
 				+ mail + ", adresse=" + adresse + "]";
 	}
 
-	//ToString
-	
-
+	// ToString
 
 }

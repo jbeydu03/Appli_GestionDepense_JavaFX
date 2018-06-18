@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jfx.view.MenuDetailsPersonne">
+   <top>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#perso" text="Perso" />
+            <Button mnemonicParsing="false" onAction="#contact" text="Contact" />
+            <Button mnemonicParsing="false" onAction="#pro" prefHeight="32.0" prefWidth="131.0" text="Travail" />
+        </buttons>
+      </ButtonBar>
+   </top>
+</BorderPane>

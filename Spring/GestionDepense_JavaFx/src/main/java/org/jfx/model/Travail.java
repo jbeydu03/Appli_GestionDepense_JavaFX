@@ -1,10 +1,14 @@
 package org.jfx.model;
 
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -15,16 +19,22 @@ public class Travail {
 	private long id;
 
 	private String nonSociete;
-	private double salaire;
 	
-	@OneToOne(mappedBy="travail")
+	@OneToMany(mappedBy="travail", cascade={CascadeType.PERSIST})
+	private Set<Paie> paies = new HashSet<>();
+	
+	
+
+
+	@OneToOne(mappedBy = "travail")
 	Adulte adulte;
 
 	// CONSTRUCTEUR
-	public Travail(String nonSociete, double salaire) {
-		super();
+
+	public Travail(String nonSociete, Set<Paie> paies) {
 		this.nonSociete = nonSociete;
-		this.salaire = salaire;
+		this.paies = paies;
+
 	}
 
 	public Travail() {
@@ -48,19 +58,30 @@ public class Travail {
 		this.nonSociete = nonSociete;
 	}
 
-	public double getSalaire() {
-		return salaire;
+	public Adulte getAdulte() {
+		return adulte;
 	}
 
-	public void setSalaire(double salaire) {
-		this.salaire = salaire;
+	public void setAdulte(Adulte adulte) {
+		this.adulte = adulte;
 	}
 
+	public Set<Paie> getPaies() {
+		return paies;
+	}
+
+	public void setPaies(Set<Paie> paies) {
+		this.paies = paies;
+	}
 	
-	//toString
+	public void addPaie(Paie paie) {
+		this.paies.add(paie);
+	}
+
+	// toString
 	@Override
 	public String toString() {
-		return "Travail [id=" + id + ", nonSociete=" + nonSociete + ", salaire=" + salaire + "]";
+		return "Travail [id=" + id + ", nonSociete=" + nonSociete + ", paies=" + paies + ", adulte=" + adulte + "]";
 	}
-	
+
 }

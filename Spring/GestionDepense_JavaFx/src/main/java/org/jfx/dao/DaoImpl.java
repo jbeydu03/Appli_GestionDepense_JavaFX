@@ -1,6 +1,6 @@
 package org.jfx.dao;
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
@@ -10,18 +10,16 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import org.jfx.model.Personne;
-import org.jfx.modelfx.PersonneFx;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TableView;
+
+
 
 public class DaoImpl implements IDao {
 
 	private static EntityManagerFactory EMF = Persistence.createEntityManagerFactory("my-pu");
 
 	@Override
-	public void addPersonne(Personne personne) {
+	public boolean addPersonne(Personne personne) {
 		EntityManager em = EMF.createEntityManager();
 		EntityTransaction txn = em.getTransaction();
 
@@ -40,14 +38,14 @@ public class DaoImpl implements IDao {
 				txn.rollback();
 			}
 			e.printStackTrace();
-			// return false;
+			 return false;
 		} finally {
 			if (em != null) {
 				em.close();
 			}
 		}
 
-		// return true;
+		 return true;
 	}
 
 	@Override
@@ -110,6 +108,65 @@ public class DaoImpl implements IDao {
 		}
 
 		return personne;
+	}
+
+	@Override
+	public boolean delete(Long personneId) {
+		EntityManager em = EMF.createEntityManager();
+		EntityTransaction txn = em.getTransaction();
+
+		try {
+			// Début transaction
+			txn.begin();
+
+			// REMOVE
+			Personne personne = em.find(Personne.class, personneId);
+			em.remove(personne);
+
+			// Fin transaction
+			txn.commit();
+		} catch (Exception e) {
+
+			if (txn != null) {
+				txn.rollback();
+			}
+			e.printStackTrace();
+			return false;
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+		return true;
+
+	}
+
+	@Override
+	public boolean update(Personne personne) {
+		EntityManager em = EMF.createEntityManager();
+		EntityTransaction txn = em.getTransaction();
+
+		try {
+			// Début transaction
+			txn.begin();
+
+			// MERGE
+			em.merge(personne);
+
+			// Fin transaction
+			txn.commit();
+		} catch (Exception e) {
+			if (txn != null) {
+				txn.rollback();
+			}
+			e.printStackTrace();
+			return false;
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+		return true;
 	}
 
 }
